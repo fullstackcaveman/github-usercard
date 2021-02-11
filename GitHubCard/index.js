@@ -62,6 +62,49 @@ const followersArray = [];
 
 const cardContainer = document.querySelector('.card');
 
+function createCard(obj) {
+	const card = document.createElement('div');
+	const img = document.createElement('img');
+	const cardInfo = document.createElement('div');
+	const givenName = document.createElement('h3');
+	const userName = document.createElement('p');
+	const location = document.createElement('p');
+	const profile = document.createElement('p');
+	const link = document.createElement('a');
+	const followers = document.createElement('p');
+	const following = document.createElement('p');
+	const bio = document.createElement('p');
+
+	cardContainer.appendChild(card);
+	card.appendChild(img);
+	card.appendChild(cardInfo);
+	cardInfo.appendChild(givenName);
+	cardInfo.appendChild(userName);
+	cardInfo.appendChild(location);
+	cardInfo.appendChild(profile);
+	profile.appendChild(link);
+	cardInfo.appendChild(followers);
+	cardInfo.appendChild(following);
+	cardInfo.appendChild(bio);
+
+	card.classList.add(card);
+	img.src = '';
+	cardInfo.classList.add('card-info');
+	givenName.classList.add('name');
+	userName.classList.add('username');
+	link.href = '';
+
+	givenName.textContent = 'changeName';
+	userName.textContent = 'changeUserName';
+	location.textContent = 'userLocation';
+	link.textContent = 'userLink';
+	followers.textContent = 'userFollowers';
+	following.textContent = 'userFollowing';
+	bio.textContent = 'userBio';
+
+	return card;
+}
+
 /*
   List of LS Instructors Github username's:
     tetondan
