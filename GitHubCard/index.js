@@ -8,7 +8,8 @@ import axios from 'axios';
 axios
 	.get('https://api.github.com/users/fullstackcaveman')
 	.then((res) => {
-		console.log(res.data);
+		const profile = res.data;
+		createCard(profile);
 	})
 	.catch((err) => {
 		console.log(err);
@@ -38,7 +39,13 @@ axios
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+	'tetondan',
+	'dustinmyers',
+	'justsml',
+	'luishrd',
+	'bigknell',
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -59,8 +66,7 @@ const followersArray = [];
       </div>
     </div>
 */
-
-const cardContainer = document.querySelector('.card');
+const entryPoint = document.querySelector('.cards');
 
 function createCard(obj) {
 	const card = document.createElement('div');
@@ -75,7 +81,7 @@ function createCard(obj) {
 	const following = document.createElement('p');
 	const bio = document.createElement('p');
 
-	cardContainer.appendChild(card);
+	entryPoint.appendChild(card);
 	card.appendChild(img);
 	card.appendChild(cardInfo);
 	cardInfo.appendChild(givenName);
@@ -87,29 +93,20 @@ function createCard(obj) {
 	cardInfo.appendChild(following);
 	cardInfo.appendChild(bio);
 
-	card.classList.add(card);
-	img.src = '';
+	card.classList.add('card');
+	img.src = obj.avatar_url;
 	cardInfo.classList.add('card-info');
 	givenName.classList.add('name');
 	userName.classList.add('username');
-	link.href = '';
+	link.href = obj.url;
 
-	givenName.textContent = 'changeName';
-	userName.textContent = 'changeUserName';
-	location.textContent = 'userLocation';
-	link.textContent = 'userLink';
-	followers.textContent = 'userFollowers';
-	following.textContent = 'userFollowing';
-	bio.textContent = 'userBio';
+	givenName.textContent = obj.name;
+	userName.textContent = obj.login;
+	location.textContent = `Location: ${obj.location}`;
+	link.textContent = `Profile: ${obj.url}`;
+	followers.textContent = `Followers: ${obj.followers}`;
+	following.textContent = `Following: ${obj.following}`;
+	bio.textContent = `Bio: ${obj.bio}`;
 
 	return card;
 }
-
-/*
-  List of LS Instructors Github username's:
-    tetondan
-    dustinmyers
-    justsml
-    luishrd
-    bigknell
-*/
