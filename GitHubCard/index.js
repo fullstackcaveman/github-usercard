@@ -10,6 +10,7 @@ axios
 	.then((res) => {
 		const profile = res.data;
 		createCard(profile);
+		console.log(res.data);
 	})
 	.catch((err) => {
 		console.log(err);
@@ -101,7 +102,6 @@ function createCard(obj) {
 	cardInfo.appendChild(userName);
 	cardInfo.appendChild(location);
 	cardInfo.appendChild(profile);
-	profile.appendChild(link);
 	cardInfo.appendChild(followers);
 	cardInfo.appendChild(following);
 	cardInfo.appendChild(bio);
@@ -111,15 +111,17 @@ function createCard(obj) {
 	cardInfo.classList.add('card-info');
 	givenName.classList.add('name');
 	userName.classList.add('username');
-	link.href = obj.url;
+	link.href = obj.html_url;
 
 	givenName.textContent = obj.name;
 	userName.textContent = obj.login;
 	location.textContent = `Location: ${obj.location}`;
-	link.textContent = `Profile: ${obj.url}`;
+	profile.textContent = 'Profile: ';
+	link.textContent = 'GitHub';
 	followers.textContent = `Followers: ${obj.followers}`;
 	following.textContent = `Following: ${obj.following}`;
 	bio.textContent = `Bio: ${obj.bio}`;
+	profile.appendChild(link);
 
 	return card;
 }
